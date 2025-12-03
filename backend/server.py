@@ -370,7 +370,7 @@ async def upload_document(file: UploadFile = File(...)):
                 'text': chunk_text,
                 'embedding': embedding
             }
-            await db.document_chunks.insert_one(chunk)
+            await database.document_chunks.insert_one(chunk)
         
         logger.info(f"Document {file.filename} uploaded with {len(chunks)} chunks")
         
