@@ -454,6 +454,7 @@ async def query_rag(request: QueryRequest):
         logger.error(f"Error processing query: {e}")
         
         # Store failed telemetry
+        database = get_database()
         telemetry = {
             'id': str(uuid.uuid4()),
             'query': request.query,
@@ -462,7 +463,7 @@ async def query_rag(request: QueryRequest):
             'success': False,
             'error': str(e)
         }
-        await db.telemetry.insert_one(telemetry)
+        await database.telemetry.insert_one(telemetry)
         
         raise HTTPException(status_code=500, detail=str(e))
 
