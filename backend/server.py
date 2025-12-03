@@ -388,8 +388,9 @@ async def upload_document(file: UploadFile = File(...)):
 @api_router.get("/documents", response_model=List[DocumentResponse])
 async def get_documents():
     """Get all documents"""
+    database = get_database()
     # Limit to 1000 documents with projection for performance
-    docs = await db.documents.find({}, {"_id": 0}).limit(1000).to_list(1000)
+    docs = await database.documents.find({}, {"_id": 0}).limit(1000).to_list(1000)
     return [DocumentResponse(**doc) for doc in docs]
 
 @api_router.delete("/documents/{document_id}")
