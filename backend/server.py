@@ -396,13 +396,14 @@ async def get_documents():
 @api_router.delete("/documents/{document_id}")
 async def delete_document(document_id: str):
     """Delete a document and its chunks"""
+    database = get_database()
     # Delete document
-    result = await db.documents.delete_one({'id': document_id})
+    result = await database.documents.delete_one({'id': document_id})
     if result.deleted_count == 0:
         raise HTTPException(status_code=404, detail="Document not found")
     
     # Delete chunks
-    await db.document_chunks.delete_many({'document_id': document_id})
+    await database.document_chunks.delete_many({'document_id': document_id})
     
     return {"message": "Document deleted successfully"}
 
