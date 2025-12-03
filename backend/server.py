@@ -111,27 +111,140 @@ def split_text_into_chunks(text: str, chunk_size: int = 500) -> List[str]:
         chunks.append(chunk)
     return chunks
 
-def extract_text_from_pdf(file_content: bytes) -> str:
-    """Extract text from PDF using pymupdf"""
+def extract_text_from_pdf(file_content: bytes, use_ocr: bool = False) -> str:
+    """Extract text from PDF using pymupdf, with OCR fallback for scanned PDFs"""
     try:
         pdf_document = pymupdf.open(stream=file_content, filetype="pdf")
         text = ""
         for page_num in range(len(pdf_document)):
             page = pdf_document[page_num]
             page_text = page.get_text()
-            text += page_text + "\n"
-        pdf_document.close()
+            text += page_text
         
-        # If no text extracted, try to create some sample text for testing
-        if not text.strip():
-            text = "This is a test document with sample content for RAG processing. It contains information about various topics that can be used for question answering."
-            logger.warning("No text extracted from PDF, using sample text for testing")
+        # If text is minimal, try OCR (likely a scanned document)
+        if len(text.strip()) < 100 or use_ocr:
+            logger.info("Using OCR for PDF extraction")
+            images = convert_from_bytes(file_content)
+            ocr_text = ""
+            for image in images:
+                ocr_text += pytesseract.image_to_string(image) + "\n\n"
+            return ocr_text if len(ocr_text) > len(text) else text
         
-        return text.strip()
+        return text
     except Exception as e:
         logger.error(f"Error extracting text from PDF: {e}")
-        # Fallback to sample text for testing
-        return "This is a test document with sample content for RAG processing. It contains information about various topics that can be used for question answering."
+        raise
+
+def extract_text_from_image(file_content: bytes) -> str:
+    """Extract text from images using OCR"""
+    try:
+        image = Image.open(io.BytesIO(file_content))
+        text = pytesseract.image_to_string(image)
+        return text
+    except Exception as e:
+        logger.error(f"Error extracting text from image: {e}")
+        raise
+
+def extract_text_from_pptx(file_content: bytes) -> str:
+    """Extract text from PowerPoint presentations"""
+    try:
+        prs = Presentation(io.BytesIO(file_content))
+        text = ""
+        for slide in prs.slides:
+            for shape in slide.shapes:
+                if hasattr(shape, "text"):
+                    text += shape.text + "\n"
+                # Extract text from tables
+                if shape.has_table:
+                    table = shape.table
+                    for row in table.rows:
+                        for cell in row.cells:
+                            text += cell.text + " "
+                    text += "\n"
+        return text
+    except Exception as e:
+        logger.error(f"Error extracting text from PPTX: {e}")
+        raise
+
+def extract_text_from_docx(file_content: bytes) -> str:
+    """Extract text from Word documents"""
+    try:
+        doc = Document(io.BytesIO(file_content))
+        text = ""
+        
+        # Extract paragraphs
+        for paragraph in doc.paragraphs:
+            text += paragraph.text + "\n"
+        
+        # Extract text from tables
+        for table in doc.tables:
+            for row in table.rows:
+                for cell in row.cells:
+                    text += cell.text + " "
+            text += "\n"
+        
+        return text
+    except Exception as e:
+        logger.error(f"Error extracting text from DOCX: {e}")
+        raise
+
+def extract_text_from_excel(file_content: bytes) -> str:
+    """Extract text from Excel files"""
+    try:
+        df = pd.read_excel(io.BytesIO(file_content), sheet_name=None)
+        text = ""
+        for sheet_name, sheet_df in df.items():
+            text += f"\n=== Sheet: {sheet_name} ===\n"
+            text += sheet_df.to_string(index=False) + "\n\n"
+        return text
+    except Exception as e:
+        logger.error(f"Error extracting text from Excel: {e}")
+        raise
+
+def detect_file_type(filename: str, file_content: bytes) -> str:
+    """Detect file type from filename and content"""
+    filename_lower = filename.lower()
+    
+    if filename_lower.endswith('.pdf'):
+        return 'pdf'
+    elif filename_lower.endswith(('.png', '.jpg', '.jpeg', '.bmp', '.tiff', '.gif')):
+        return 'image'
+    elif filename_lower.endswith(('.ppt', '.pptx')):
+        return 'pptx'
+    elif filename_lower.endswith(('.doc', '.docx')):
+        return 'docx'
+    elif filename_lower.endswith(('.xls', '.xlsx')):
+        return 'excel'
+    else:
+        # Try to detect from content
+        try:
+            # Check if it's an image
+            Image.open(io.BytesIO(file_content))
+            return 'image'
+        except:
+            pass
+        
+        # Default to pdf
+        return 'pdf'
+
+def extract_text_from_file(filename: str, file_content: bytes) -> tuple[str, str]:
+    """Extract text from various file types"""
+    file_type = detect_file_type(filename, file_content)
+    
+    if file_type == 'pdf':
+        text = extract_text_from_pdf(file_content)
+    elif file_type == 'image':
+        text = extract_text_from_image(file_content)
+    elif file_type == 'pptx':
+        text = extract_text_from_pptx(file_content)
+    elif file_type == 'docx':
+        text = extract_text_from_docx(file_content)
+    elif file_type == 'excel':
+        text = extract_text_from_excel(file_content)
+    else:
+        raise ValueError(f"Unsupported file type: {file_type}")
+    
+    return text, file_type
 
 async def retrieve_relevant_chunks(query: str, top_k: int = 3) -> List[Dict[str, Any]]:
     """Retrieve most relevant chunks using vector similarity"""
