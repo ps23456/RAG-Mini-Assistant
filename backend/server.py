@@ -485,7 +485,9 @@ async def get_telemetry_stats():
 @api_router.get("/telemetry/history")
 async def get_telemetry_history(limit: int = 50):
     """Get recent telemetry records"""
-    records = await db.telemetry.find({}, {"_id": 0}).sort("timestamp", -1).limit(limit).to_list(limit)
+    # Cap maximum limit to 100 for performance
+    safe_limit = min(limit, 100)
+    records = await db.telemetry.find({}, {"_id": 0}).sort("timestamp", -1).limit(safe_limit).to_list(safe_limit)
     return records
 
 @api_router.get("/dashboard/stats")
