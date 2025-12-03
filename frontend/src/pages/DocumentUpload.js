@@ -93,7 +93,7 @@ export default function DocumentUpload() {
         <h1 className="text-4xl md:text-5xl font-heading font-bold tracking-tight mb-2">
           Upload Documents
         </h1>
-        <p className="text-muted-foreground">Upload PDF documents to build your knowledge base</p>
+        <p className="text-muted-foreground">Upload documents, presentations, spreadsheets, and images to build your knowledge base</p>
       </div>
 
       <Card className="glass-card">
