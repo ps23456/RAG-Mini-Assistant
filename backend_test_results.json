@@ -1,0 +1,49 @@
+{
+  "total_tests": 7,
+  "passed_tests": 6,
+  "success_rate": 85.71428571428571,
+  "test_details": [
+    {
+      "test_name": "API Root Endpoint",
+      "success": true,
+      "details": "Status: 200, Response: {'message': 'RAG Assistant API'}",
+      "timestamp": "2025-12-03T07:26:36.424846"
+    },
+    {
+      "test_name": "Dashboard Stats",
+      "success": true,
+      "details": "Status: 200, Fields present: True, Data: {'document_count': 0, 'chunk_count': 0, 'query_count': 0, 'recent_queries': []}",
+      "timestamp": "2025-12-03T07:26:36.469173"
+    },
+    {
+      "test_name": "Telemetry Stats",
+      "success": true,
+      "details": "Status: 200, Fields present: True, Data: {'total_queries': 0, 'avg_latency_ms': 0.0, 'total_tokens': 0, 'total_cost': 0.0, 'success_rate': 0.0}",
+      "timestamp": "2025-12-03T07:26:36.511791"
+    },
+    {
+      "test_name": "Telemetry History",
+      "success": true,
+      "details": "Status: 200, History records: 0",
+      "timestamp": "2025-12-03T07:26:36.553687"
+    },
+    {
+      "test_name": "Get Documents",
+      "success": true,
+      "details": "Status: 200, Document count: 0",
+      "timestamp": "2025-12-03T07:26:36.593214"
+    },
+    {
+      "test_name": "Document Upload",
+      "success": false,
+      "details": "Status: 500, Error: {'detail': \"cannot access local variable 'chunk_text' where it is not associated with a value\"}",
+      "timestamp": "2025-12-03T07:26:36.734146"
+    },
+    {
+      "test_name": "RAG Query",
+      "success": true,
+      "details": "Status: 404 (No documents available - expected)",
+      "timestamp": "2025-12-03T07:26:36.810811"
+    }
+  ]
+}
