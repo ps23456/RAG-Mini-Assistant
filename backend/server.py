@@ -329,6 +329,7 @@ async def upload_document(file: UploadFile = File(...)):
         document = {
             'id': doc_id,
             'filename': file.filename,
+            'file_type': file_type,
             'upload_date': datetime.now(timezone.utc).isoformat(),
             'file_size': len(file_content),
             'text_length': len(text)
