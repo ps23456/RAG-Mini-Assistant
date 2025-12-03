@@ -180,23 +180,29 @@ export default function DocumentUpload() {
             <div className="bg-primary/10 rounded-full p-2 flex-shrink-0">
               <span className="text-primary font-bold font-mono">1</span>
             </div>
-            <p>PDF text is extracted and cleaned</p>
+            <p>Document text is extracted (PDF, DOCX, PPTX, XLSX) or OCR is applied (Images, Scanned PDFs)</p>
           </div>
           <div className="flex items-start gap-3">
             <div className="bg-primary/10 rounded-full p-2 flex-shrink-0">
               <span className="text-primary font-bold font-mono">2</span>
             </div>
-            <p>Text is split into semantic chunks (~500 words)</p>
+            <p>Tables and structured content are preserved and extracted</p>
           </div>
           <div className="flex items-start gap-3">
             <div className="bg-primary/10 rounded-full p-2 flex-shrink-0">
               <span className="text-primary font-bold font-mono">3</span>
             </div>
-            <p>Embeddings are generated for each chunk using OpenAI</p>
+            <p>Text is split into semantic chunks (~500 words)</p>
           </div>
           <div className="flex items-start gap-3">
             <div className="bg-primary/10 rounded-full p-2 flex-shrink-0">
               <span className="text-primary font-bold font-mono">4</span>
+            </div>
+            <p>Embeddings are generated for each chunk using OpenAI</p>
+          </div>
+          <div className="flex items-start gap-3">
+            <div className="bg-primary/10 rounded-full p-2 flex-shrink-0">
+              <span className="text-primary font-bold font-mono">5</span>
             </div>
             <p>Vectors are stored in MongoDB for fast retrieval</p>
           </div>
