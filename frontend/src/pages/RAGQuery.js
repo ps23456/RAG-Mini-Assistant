@@ -112,7 +112,7 @@ export default function RAGQuery() {
                     <Sparkles className="text-primary" size={16} />
                     <p className="font-heading font-semibold text-sm">AI Answer</p>
                   </div>
-                  <p className="text-sm leading-relaxed">{response.answer}</p>
+                  <div className="text-sm leading-relaxed whitespace-pre-wrap">{response.answer}</div>
                 </div>
 
                 <div className="flex items-center gap-4 text-xs text-muted-foreground">
