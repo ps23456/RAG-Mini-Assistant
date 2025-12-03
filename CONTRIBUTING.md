@@ -7,8 +7,7 @@ Thank you for your interest in contributing! We welcome contributions from the c
 1. **Fork the repository**
 2. **Clone your fork**
    ```bash
-   git clone https://github.com/yourusername/multi-modal-rag-assistant.git
-   cd multi-modal-rag-assistant
+   git clone https://github.com/ps23456/RAG-Mini-Assistant.git
    ```
 3. **Create a branch**
    ```bash
