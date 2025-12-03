@@ -344,7 +344,7 @@ async def upload_document(file: UploadFile = File(...)):
         
         # Generate embeddings and store chunks
         if not chunks:
-            raise HTTPException(status_code=400, detail="No text chunks could be created from the PDF")
+            raise HTTPException(status_code=400, detail=f"No text chunks could be created from the {file_type.upper()} file")
             
         for idx, chunk_text in enumerate(chunks):
             if not chunk_text.strip():
