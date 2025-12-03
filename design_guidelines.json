@@ -1,0 +1,160 @@
+{
+  "typography": {
+    "font_family": {
+      "headings": "Space Grotesk, sans-serif",
+      "body": "Manrope, sans-serif",
+      "code": "JetBrains Mono, monospace"
+    },
+    "weights": {
+      "headings": "600",
+      "body": "400",
+      "bold": "700"
+    },
+    "sizes": {
+      "h1": "text-4xl md:text-5xl tracking-tight",
+      "h2": "text-3xl tracking-tight",
+      "h3": "text-2xl tracking-tight",
+      "body": "text-base leading-relaxed",
+      "small": "text-sm text-muted-foreground",
+      "tiny": "text-xs uppercase tracking-widest"
+    },
+    "imports": [
+      "@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');"
+    ]
+  },
+  "colors": {
+    "theme": "dark",
+    "palette": {
+      "background": "#09090B",
+      "foreground": "#FAFAFA",
+      "card": "#18181B",
+      "card_foreground": "#FAFAFA",
+      "popover": "#09090B",
+      "popover_foreground": "#FAFAFA",
+      "primary": "#00FF94",
+      "primary_foreground": "#000000",
+      "secondary": "#27272A",
+      "secondary_foreground": "#FAFAFA",
+      "muted": "#27272A",
+      "muted_foreground": "#A1A1AA",
+      "accent": "#27272A",
+      "accent_foreground": "#FAFAFA",
+      "destructive": "#EF4444",
+      "destructive_foreground": "#FAFAFA",
+      "border": "#27272A",
+      "input": "#27272A",
+      "ring": "#00FF94",
+      "chart_1": "#00FF94",
+      "chart_2": "#0EA5E9",
+      "chart_3": "#F59E0B",
+      "chart_4": "#A855F7",
+      "chart_5": "#EC4899"
+    },
+    "usage": {
+      "primary_action": "bg-primary text-primary-foreground hover:bg-primary/90",
+      "secondary_action": "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+      "surface": "bg-card border border-border",
+      "glass": "bg-black/60 backdrop-blur-xl border-b border-white/10"
+    }
+  },
+  "visual_enhancers": {
+    "borders": "border border-white/10",
+    "radius": "rounded-sm",
+    "shadows": {
+      "card": "shadow-lg shadow-black/40",
+      "glow": "shadow-[0_0_15px_rgba(0,255,148,0.15)]"
+    },
+    "gradients": {
+      "subtle_overlay": "bg-gradient-to-b from-white/5 to-transparent",
+      "active_border": "bg-gradient-to-r from-primary/50 to-transparent"
+    },
+    "textures": "bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay pointer-events-none fixed inset-0 z-50"
+  },
+  "component_name": {
+    "card": "Card",
+    "button": "Button",
+    "input": "Input",
+    "badge": "Badge",
+    "dialog": "Dialog",
+    "sheet": "Sheet",
+    "table": "Table",
+    "toast": "Sonner"
+  },
+  "grids": {
+    "dashboard": "grid grid-cols-1 md:grid-cols-4 gap-6",
+    "bento_hero": "grid grid-cols-1 md:grid-cols-12 gap-4",
+    "form_layout": "grid grid-cols-1 gap-6 max-w-2xl"
+  },
+  "layouts": {
+    "main_wrapper": "min-h-screen bg-background font-sans antialiased selection:bg-primary/20 selection:text-primary",
+    "sidebar_layout": "flex h-screen overflow-hidden",
+    "content_area": "flex-1 overflow-y-auto p-8 md:p-12",
+    "rag_split": "grid grid-cols-1 lg:grid-cols-2 gap-8 h-[calc(100vh-8rem)]"
+  },
+  "motion": {
+    "hover_card": "transition-all duration-300 hover:border-primary/50 hover:shadow-[0_0_20px_rgba(0,255,148,0.1)]",
+    "button_press": "active:scale-95 transition-transform duration-100",
+    "page_enter": "animate-in fade-in slide-in-from-bottom-4 duration-500",
+    "list_stagger": "stagger-children"
+  },
+  "accessibility": {
+    "contrast_check": "Ensure text on colored badges uses correct foreground color (usually black on neon)",
+    "focus_states": "focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+    "aria_labels": "Required for all icon-only buttons"
+  },
+  "media": {
+    "icons": "lucide-react",
+    "charts": "recharts (via shadcn/ui charts)",
+    "avatars": "radix-ui/react-avatar"
+  },
+  "3d_libraries": {
+    "primary": "None (Focus on 2D Data Density)",
+    "optional": "framer-motion for layout transitions"
+  },
+  "image_urls": {
+    "hero_background": {
+      "url": "https://images.unsplash.com/photo-1707332287886-84315bbb04bb?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "description": "Abstract cyber data visualization dark background",
+      "category": "background"
+    },
+    "developer_setup": {
+      "url": "https://images.unsplash.com/photo-1753998943228-73470750c597?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "description": "Developer coding setup dark mode",
+      "category": "marketing"
+    },
+    "document_icon": {
+      "url": "https://images.unsplash.com/photo-1737265320231-e75f56105fe9?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "description": "Abstract minimalist 3d document icon",
+      "category": "ui_asset"
+    },
+    "user_avatar": {
+      "url": "https://images.unsplash.com/photo-1620500152438-b303ab1e73c1?crop=entropy&cs=srgb&fm=jpg&q=85",
+      "description": "Professional user avatar portrait",
+      "category": "user"
+    }
+  },
+  "component_path": {
+    "ui": "/app/frontend/src/components/ui",
+    "layout": "/app/frontend/src/components/layout",
+    "features": "/app/frontend/src/components/features"
+  },
+  "instructions_to_main_agent": [
+    "1. INSTALL FONTS: Add the Google Fonts import to index.css immediately.",
+    "2. CONFIGURE TAILWIND: Update tailwind.config.js with the specific colors defined in 'colors.palette'. Use CSS variables in index.css.",
+    "3. SHADCN CUSTOMIZATION: When installing shadcn components, override the default 'radius' to '0.3rem' (sm) to match the 'Terminal' aesthetic.",
+    "4. LAYOUT STRATEGY: Use the 'sidebar_layout' for the main app. The Sidebar should be fixed left, glassmorphism style.",
+    "5. RAG INTERFACE: The Chat interface must be distinct from the Document viewer. Use a split pane. Chat bubbles should be distinct: User (Secondary BG), AI (Primary/10 BG + Border).",
+    "6. TELEMETRY: Use 'recharts' for the analytics. Style the charts with the neon palette (chart_1 to chart_5).",
+    "7. DATA-TESTID: Every interactive element (button, input, link) MUST have a data-testid attribute (e.g., 'submit-query-btn').",
+    "8. NO TRANSPARENT BG: Ensure dropdowns and popovers have 'bg-popover' and 'border' to avoid transparency issues."
+  ],
+  "UNIVERSAL_GUIDELINES": [
+    "Do not use gradients for text.",
+    "Avoid 'Inter' font for headings; use 'Space Grotesk'.",
+    "Use 'JetBrains Mono' for all code snippets, JSON outputs, and system logs.",
+    "Primary color (#00FF94) should be used sparingly for high-priority actions only.",
+    "Always add 'transition-all duration-200' to interactive elements.",
+    "Use 'sonner' for toast notifications.",
+    "Ensure all pages are responsive (mobile-first approach)."
+  ]
+}
