@@ -214,7 +214,7 @@ async def upload_document(file: UploadFile = File(...)):
         }
         
         # Chunk text
-        chunks = chunk_text(text, chunk_size=500)
+        chunks = split_text_into_chunks(text, chunk_size=500)
         document['chunk_count'] = len(chunks)
         
         # Store document
