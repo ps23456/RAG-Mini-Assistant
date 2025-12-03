@@ -470,8 +470,9 @@ async def query_rag(request: QueryRequest):
 @api_router.get("/telemetry/stats", response_model=TelemetryStats)
 async def get_telemetry_stats():
     """Get telemetry statistics"""
+    database = get_database()
     # Limit to last 1000 records for stats calculation
-    telemetry_records = await db.telemetry.find({}).sort("timestamp", -1).limit(1000).to_list(1000)
+    telemetry_records = await database.telemetry.find({}).sort("timestamp", -1).limit(1000).to_list(1000)
     
     if not telemetry_records:
         return TelemetryStats(
