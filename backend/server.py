@@ -313,16 +313,16 @@ async def root():
 
 @api_router.post("/documents/upload", response_model=DocumentResponse)
 async def upload_document(file: UploadFile = File(...)):
-    """Upload and process a PDF document"""
+    """Upload and process documents (PDF, Word, PowerPoint, Excel, Images)"""
     try:
         # Read file
         file_content = await file.read()
         
         # Extract text
-        text = extract_text_from_pdf(file_content)
+        text, file_type = extract_text_from_file(file.filename, file_content)
         
         if not text.strip():
-            raise HTTPException(status_code=400, detail="No text could be extracted from the PDF")
+            raise HTTPException(status_code=400, detail=f"No text could be extracted from the {file_type.upper()} file")
         
         # Create document
         doc_id = str(uuid.uuid4())
