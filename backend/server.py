@@ -94,7 +94,7 @@ async def generate_embedding(text: str) -> List[float]:
         logger.error(f"Error generating embedding: {e}")
         raise
 
-def chunk_text(text: str, chunk_size: int = 500) -> List[str]:
+def split_text_into_chunks(text: str, chunk_size: int = 500) -> List[str]:
     """Split text into chunks"""
     words = text.split()
     chunks = []
