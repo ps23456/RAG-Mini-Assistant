@@ -429,6 +429,7 @@ async def query_rag(request: QueryRequest):
         latency_ms = (time.time() - start_time) * 1000
         
         # Store telemetry
+        database = get_database()
         telemetry = {
             'id': str(uuid.uuid4()),
             'query': request.query,
@@ -438,7 +439,7 @@ async def query_rag(request: QueryRequest):
             'timestamp': datetime.now(timezone.utc).isoformat(),
             'success': True
         }
-        await db.telemetry.insert_one(telemetry)
+        await database.telemetry.insert_one(telemetry)
         
         return QueryResponse(
             answer=answer,
