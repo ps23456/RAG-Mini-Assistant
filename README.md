@@ -12,6 +12,9 @@
 
 [Features](#-features) • [Demo](#-demo) • [Installation](#-installation) • [Usage](#-usage) • [API](#-api-documentation) • [Contributing](#-contributing)
 
+deployment link: https://rag-vector.emergent.host/
+
+
 </div>
 
 ---
@@ -712,7 +715,6 @@ SOFTWARE.
 ## 🙏 Acknowledgments
 
 - **OpenAI** - GPT-5.1 and embeddings API
-- **Emergent AI** - Universal LLM key infrastructure
 - **LangChain** - RAG orchestration framework
 - **Shadcn/UI** - Beautiful React components
 - **FastAPI** - High-performance Python framework
