@@ -98,8 +98,8 @@ export default function DocumentUpload() {
 
       <Card className="glass-card">
         <CardHeader>
-          <CardTitle className="font-heading">Document Upload</CardTitle>
-          <CardDescription>Select a PDF file to process and embed</CardDescription>
+          <CardTitle className="font-heading">Multi-Modal Document Upload</CardTitle>
+          <CardDescription>Upload PDF, Word, PowerPoint, Excel, Images, Screenshots, or Scanned Documents</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <div
