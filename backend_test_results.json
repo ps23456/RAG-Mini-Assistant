@@ -7,43 +7,43 @@
       "test_name": "API Root Endpoint",
       "success": true,
       "details": "Status: 200, Response: {'message': 'RAG Assistant API'}",
-      "timestamp": "2025-12-03T07:27:21.349887"
+      "timestamp": "2025-12-03T07:27:32.335286"
     },
     {
       "test_name": "Dashboard Stats",
       "success": true,
       "details": "Status: 200, Fields present: True, Data: {'document_count': 0, 'chunk_count': 0, 'query_count': 0, 'recent_queries': []}",
-      "timestamp": "2025-12-03T07:27:21.393641"
+      "timestamp": "2025-12-03T07:27:32.380127"
     },
     {
       "test_name": "Telemetry Stats",
       "success": true,
       "details": "Status: 200, Fields present: True, Data: {'total_queries': 0, 'avg_latency_ms': 0.0, 'total_tokens': 0, 'total_cost': 0.0, 'success_rate': 0.0}",
-      "timestamp": "2025-12-03T07:27:21.430900"
+      "timestamp": "2025-12-03T07:27:32.419692"
     },
     {
       "test_name": "Telemetry History",
       "success": true,
       "details": "Status: 200, History records: 0",
-      "timestamp": "2025-12-03T07:27:21.510984"
+      "timestamp": "2025-12-03T07:27:32.457740"
     },
     {
       "test_name": "Get Documents",
       "success": true,
       "details": "Status: 200, Document count: 0",
-      "timestamp": "2025-12-03T07:27:21.556405"
+      "timestamp": "2025-12-03T07:27:32.495309"
     },
     {
       "test_name": "Document Upload",
       "success": false,
       "details": "Status: 500, Error: {'detail': \"cannot access local variable 'chunk_text' where it is not associated with a value\"}",
-      "timestamp": "2025-12-03T07:27:21.597476"
+      "timestamp": "2025-12-03T07:27:32.542321"
     },
     {
       "test_name": "RAG Query",
       "success": true,
       "details": "Status: 404 (No documents available - expected)",
-      "timestamp": "2025-12-03T07:27:21.635991"
+      "timestamp": "2025-12-03T07:27:32.581606"
     }
   ]
 }
