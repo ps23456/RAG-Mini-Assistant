@@ -220,7 +220,7 @@ def detect_file_type(filename: str, file_content: bytes) -> str:
             # Check if it's an image
             Image.open(io.BytesIO(file_content))
             return 'image'
-        except:
+        except Exception:
             pass
         
         # Default to pdf
