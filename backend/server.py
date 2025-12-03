@@ -249,8 +249,11 @@ async def retrieve_relevant_chunks(query: str, top_k: int = 3) -> List[Dict[str,
     """Retrieve most relevant chunks using vector similarity"""
     query_embedding = await generate_embedding(query)
     
-    # Get all chunks
-    chunks = await db.document_chunks.find({}).to_list(None)
+    # Get chunks with reasonable limit and projection for performance
+    chunks = await db.document_chunks.find(
+        {}, 
+        {"_id": 0, "embedding": 1, "text": 1, "document_id": 1, "chunk_index": 1}
+    ).limit(1000).to_list(1000)
     
     if not chunks:
         return []
