@@ -109,15 +109,15 @@ export default function DocumentUpload() {
           >
             <Upload className="mx-auto mb-4 text-muted-foreground" size={48} />
             <p className="text-lg font-heading mb-2">
-              {file ? file.name : 'Click to select a PDF file'}
+              {file ? file.name : 'Click to select a document or image'}
             </p>
             <p className="text-sm text-muted-foreground">
-              Supported format: PDF (Max 10MB)
+              Supported formats: PDF, DOCX, PPTX, XLSX, Images (PNG, JPG, etc.)
             </p>
             <input
               id="file-input"
               type="file"
-              accept=".pdf"
+              accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.png,.jpg,.jpeg,.bmp,.tiff,.gif"
               onChange={handleFileChange}
               className="hidden"
               data-testid="file-input"
