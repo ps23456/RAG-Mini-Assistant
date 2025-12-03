@@ -27,10 +27,20 @@ from typing import BinaryIO
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
-# MongoDB connection
-mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+# MongoDB connection - Lazy initialization
+client = None
+db = None
+
+def get_database():
+    """Get MongoDB database connection with lazy initialization"""
+    global client, db
+    if db is None:
+        mongo_url = os.environ.get('MONGO_URL', 'mongodb://localhost:27017')
+        db_name = os.environ.get('DB_NAME', 'rag_assistant_db')
+        client = AsyncIOMotorClient(mongo_url)
+        db = client[db_name]
+        logger.info(f"Connected to MongoDB: {db_name}")
+    return db
 
 # Create the main app without a prefix
 app = FastAPI()
