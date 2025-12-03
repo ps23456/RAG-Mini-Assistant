@@ -258,9 +258,10 @@ def extract_text_from_file(filename: str, file_content: bytes) -> tuple[str, str
 async def retrieve_relevant_chunks(query: str, top_k: int = 3) -> List[Dict[str, Any]]:
     """Retrieve most relevant chunks using vector similarity"""
     query_embedding = await generate_embedding(query)
+    database = get_database()
     
     # Get chunks with reasonable limit and projection for performance
-    chunks = await db.document_chunks.find(
+    chunks = await database.document_chunks.find(
         {}, 
         {"_id": 0, "embedding": 1, "text": 1, "document_id": 1, "chunk_index": 1}
     ).limit(1000).to_list(1000)
