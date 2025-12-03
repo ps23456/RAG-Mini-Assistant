@@ -91,7 +91,6 @@ async def generate_embedding(text: str) -> List[float]:
     try:
         # Simple embedding simulation using text features
         # In production, use actual OpenAI embeddings
-        words = text.lower().split()
         # Create a simple 384-dimensional embedding based on text features
         embedding = []
         for i in range(384):
