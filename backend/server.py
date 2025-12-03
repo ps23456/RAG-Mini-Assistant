@@ -15,6 +15,14 @@ from sklearn.metrics.pairwise import cosine_similarity
 import time
 from emergentintegrations.llm.chat import LlmChat, UserMessage
 import asyncio
+from PIL import Image
+import pytesseract
+from pdf2image import convert_from_bytes
+from pptx import Presentation
+from docx import Document
+import io
+import pandas as pd
+from typing import BinaryIO
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
