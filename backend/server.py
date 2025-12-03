@@ -512,12 +512,13 @@ async def get_telemetry_history(limit: int = 50):
 @api_router.get("/dashboard/stats")
 async def get_dashboard_stats():
     """Get dashboard statistics"""
-    doc_count = await db.documents.count_documents({})
-    chunk_count = await db.document_chunks.count_documents({})
-    query_count = await db.telemetry.count_documents({})
+    database = get_database()
+    doc_count = await database.documents.count_documents({})
+    chunk_count = await database.document_chunks.count_documents({})
+    query_count = await database.telemetry.count_documents({})
     
     # Get recent queries
-    recent_queries = await db.telemetry.find(
+    recent_queries = await database.telemetry.find(
         {}, 
         {"_id": 0, "query": 1, "timestamp": 1, "success": 1}
     ).sort("timestamp", -1).limit(5).to_list(5)
