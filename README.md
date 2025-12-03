@@ -12,7 +12,7 @@
 
 [Features](#-features) • [Demo](#-demo) • [Installation](#-installation) • [Usage](#-usage) • [API](#-api-documentation) • [Contributing](#-contributing)
 
-deployment link: https://rag-vector.emergent.host/
+**Deployment Link**: https://rag-vector.emergent.host/
 
 
 </div>
