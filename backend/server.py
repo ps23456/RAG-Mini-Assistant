@@ -352,7 +352,8 @@ async def upload_document(file: UploadFile = File(...)):
         document['chunk_count'] = len(chunks)
         
         # Store document
-        await db.documents.insert_one(document)
+        database = get_database()
+        await database.documents.insert_one(document)
         
         # Generate embeddings and store chunks
         if not chunks:
