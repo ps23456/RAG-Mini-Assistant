@@ -17,11 +17,30 @@ export default function DocumentUpload() {
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
-    if (selectedFile && selectedFile.type === 'application/pdf') {
-      setFile(selectedFile);
-      setUploadedDoc(null);
-    } else {
-      toast.error('Please select a PDF file');
+    if (selectedFile) {
+      const allowedTypes = [
+        'application/pdf',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        'application/msword',
+        'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+        'application/vnd.ms-powerpoint',
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        'application/vnd.ms-excel',
+        'image/png',
+        'image/jpeg',
+        'image/jpg',
+        'image/bmp',
+        'image/tiff',
+        'image/gif'
+      ];
+      
+      if (allowedTypes.includes(selectedFile.type) || 
+          selectedFile.name.match(/\.(pdf|docx?|pptx?|xlsx?|png|jpe?g|bmp|tiff?|gif)$/i)) {
+        setFile(selectedFile);
+        setUploadedDoc(null);
+      } else {
+        toast.error('Please select a supported file (PDF, DOCX, PPTX, XLSX, or Image)');
+      }
     }
   };
 
